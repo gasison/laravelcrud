@@ -15,6 +15,11 @@ class JobListingController extends Controller
     public function index()
     {
         //
+        $data = JobListing::all();
+
+       
+
+        return view('home',['data' => $data]);
     }
 
     /**
@@ -25,6 +30,8 @@ class JobListingController extends Controller
     public function create()
     {
         //
+
+        return view('create');
     }
 
     /**
@@ -36,6 +43,10 @@ class JobListingController extends Controller
     public function store(Request $request)
     {
         //
+
+        JobListing::create($request->all());
+
+        return redirect()->route('jobListing.index');
     }
 
     /**
@@ -58,6 +69,8 @@ class JobListingController extends Controller
     public function edit(JobListing $jobListing)
     {
         //
+        // dd($jobListing);
+        return view('edit', compact('jobListing'));
     }
 
     /**
@@ -70,6 +83,10 @@ class JobListingController extends Controller
     public function update(Request $request, JobListing $jobListing)
     {
         //
+        // ddd($request);
+        $jobListing->update($request->all());
+
+        return redirect()->route('jobListing.index');
     }
 
     /**
@@ -81,5 +98,9 @@ class JobListingController extends Controller
     public function destroy(JobListing $jobListing)
     {
         //
+
+        $jobListing->delete();
+
+        return redirect()->route('jobListing.index');
     }
 }

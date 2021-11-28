@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\JobListingController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,4 +20,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [JobListingController::class, 'index'])->name('home');
+
+// Routes Resources
+$routes = Route::resource('jobListing', JobListingController::class);
+
+
+// dd($routes);
